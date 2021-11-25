@@ -1,7 +1,7 @@
 package com.athome.feel.model.service;
 
 
-import com.athome.feel.model.FriendDto;
+import com.athome.feel.model.FollowDto;
 import com.athome.feel.model.LoginDto;
 import com.athome.feel.model.MemberDto;
 
@@ -13,11 +13,13 @@ public interface MemberService {
 
     void register(LoginDto loginDto);
 
-    List<MemberDto> findFriend(int memberId);
+    List<MemberDto> findFollowee(int memberId);
 
-    void addFriend(FriendDto friendDto);
+    List<MemberDto> findFollower(int memberId);
 
-    void deleteFriend(FriendDto friendDto);
+    void follow(FollowDto followDto);
+
+    void unfollow(FollowDto followDto);
 
     List<MemberDto> searchName(String name);
 }
