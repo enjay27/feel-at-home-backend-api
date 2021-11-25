@@ -1,6 +1,6 @@
 package com.athome.feel.controller;
 
-import com.athome.feel.model.FriendDto;
+import com.athome.feel.model.FollowDto;
 import com.athome.feel.model.LoginDto;
 import com.athome.feel.model.MemberDto;
 import com.athome.feel.model.service.MemberService;
@@ -27,15 +27,15 @@ public class MemberController {
         return ResponseEntity.ok(memberDto);
     }
 
-    @GetMapping("/friend/{memberId}")
-    public ResponseEntity<?> friend(@PathVariable("memberId") int memberId) {
-        List<MemberDto> friends = memberService.findFriend(memberId);
+    @GetMapping("/follow/{memberId}")
+    public ResponseEntity<?> followee(@PathVariable("memberId") int memberId) {
+        List<MemberDto> friends = memberService.findFollowee(memberId);
         return ResponseEntity.ok(friends);
     }
 
-    @PostMapping("/friend")
-    public ResponseEntity<?> addFriend(@RequestBody FriendDto friendDto) {
-        memberService.addFriend(friendDto);
+    @PostMapping("/follow")
+    public ResponseEntity<?> follow(@RequestBody FollowDto followDto) {
+        memberService.follow(followDto);
         return ResponseEntity.ok().build();
     }
 

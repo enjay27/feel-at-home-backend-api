@@ -1,11 +1,11 @@
 package com.athome.feel.model;
 
-public class FriendDto {
+public class FollowDto {
 
     private final int memberId;
     private final int friendId;
 
-    public FriendDto(int memberId, int friendId) {
+    public FollowDto(int memberId, int friendId) {
         this.memberId = memberId;
         this.friendId = friendId;
     }

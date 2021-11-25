@@ -21,21 +21,30 @@
         where display_name like CONCAT('%',#{keyword},'%')
     </select>
 
-    <select id="findFriend" parameterType="int" resultType="memberDto">
+    <select id="findFollowee" parameterType="int" resultType="memberDto">
         select member.member_id, member_account_id, display_name, email
         from member
         where member.member_id in (
-            select friend_id
+            select follower_id
             from friend
             where member_id = #{memberId});
     </select>
 
-    <insert id="addFriend" parameterType="map">
+    <select id="findFollower" parameterType="int" resultType="memberDto">
+        select member.member_id, member_account_id, display_name, email
+        from member
+        where member.member_id in (
+            select member_id
+            from friend
+            where follower_id = #{followerId});
+    </select>
+
+    <insert id="addFollow" parameterType="map">
         insert into friend (member_id, friend_id)
         values (#{memberId}, #{friendId})
     </insert>
 
-    <delete id="deleteFriend" parameterType="map">
+    <delete id="deleteFollow" parameterType="map">
         delete from friend
         where member_id = #{memberId}
         and friend_id = #{friendId}

@@ -1,6 +1,6 @@
 package com.athome.feel.model.mapper;
 
-import com.athome.feel.model.FriendDto;
+import com.athome.feel.model.FollowDto;
 import com.athome.feel.model.LoginDto;
 import com.athome.feel.model.MemberDto;
 import org.apache.ibatis.annotations.Mapper;
@@ -14,11 +14,13 @@ public interface MemberMapper {
 
     MemberDto findByAccountId(String accountId);
 
-    List<MemberDto> findFriend(int memberId);
+    List<MemberDto> findFollowee(int memberId);
 
-    void addFriend(FriendDto friendDto);
+    List<MemberDto> findFollower(int memberId);
 
-    void deleteFriend(FriendDto friendDto);
+    void addFollow(FollowDto followDto);
+
+    void deleteFollow(FollowDto followDto);
 
     List<MemberDto> findByNameLike(String name);
 }

@@ -1,6 +1,6 @@
 package com.athome.feel.model.service;
 
-import com.athome.feel.model.FriendDto;
+import com.athome.feel.model.FollowDto;
 import com.athome.feel.model.LoginDto;
 import com.athome.feel.model.MemberDto;
 import com.athome.feel.model.mapper.MemberMapper;
@@ -27,18 +27,23 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public List<MemberDto> findFriend(int memberId) {
-        return sqlSession.getMapper(MemberMapper.class).findFriend(memberId);
+    public List<MemberDto> findFollowee(int memberId) {
+        return sqlSession.getMapper(MemberMapper.class).findFollowee(memberId);
     }
 
     @Override
-    public void addFriend(FriendDto friendDto) {
-        sqlSession.getMapper(MemberMapper.class).addFriend(friendDto);
+    public List<MemberDto> findFollower(int memberId) {
+        return null;
     }
 
     @Override
-    public void deleteFriend(FriendDto friendDto) {
-        sqlSession.getMapper(MemberMapper.class).deleteFriend(friendDto);
+    public void follow(FollowDto followDto) {
+        sqlSession.getMapper(MemberMapper.class).addFollow(followDto);
+    }
+
+    @Override
+    public void unfollow(FollowDto followDto) {
+        sqlSession.getMapper(MemberMapper.class).deleteFollow(followDto);
     }
 
     @Override
