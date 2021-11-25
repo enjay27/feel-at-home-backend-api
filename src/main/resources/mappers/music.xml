@@ -5,9 +5,12 @@
 <mapper namespace="com.athome.feel.model.mapper.MusicMapper">
 
     <select id="findById" parameterType="string" resultType="musicDto">
-        select song_id, youtube_id, title, description, thumbnail
+        select song.song_id, youtube_id, title, description, thumbnail,
+        song_like_id is not null islike
         from song
+        left join song_like on song.song_id = song_like.song_id
         where youtube_id = #{youtube_id}
+        limit 1
     </select>
 
     <insert id="insertSong" parameterType="MusicDto">

@@ -79,5 +79,12 @@
         where member_id = #{memberId}
         and follow_id = #{followId}
     </delete>
+    
+    <select id="listLikeSongs" parameterType="int" resultType="MusicDto">
+    	select st.title
+    	from song st
+    	inner join song_like sl on st.song_id = sl.song_id
+    	where member_id = #{memberId}
+    </select>
 
 </mapper>

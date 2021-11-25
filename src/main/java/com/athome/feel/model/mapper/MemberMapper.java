@@ -3,6 +3,8 @@ package com.athome.feel.model.mapper;
 import com.athome.feel.model.FollowDto;
 import com.athome.feel.model.LoginDto;
 import com.athome.feel.model.MemberDto;
+import com.athome.feel.model.MusicDto;
+
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -32,4 +34,5 @@ public interface MemberMapper {
 
     void decreaseFollower(int followId);
 
+    List<MusicDto> listLikeSongs(int memberId);
 }
