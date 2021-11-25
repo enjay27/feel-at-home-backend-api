@@ -1,6 +1,6 @@
 package com.athome.feel.controller;
 
-import com.athome.feel.model.FriendDto;
+import com.athome.feel.model.FollowDto;
 import com.athome.feel.model.LoginDto;
 import com.athome.feel.model.MemberDto;
 import com.athome.feel.model.service.MemberService;
@@ -27,15 +27,27 @@ public class MemberController {
         return ResponseEntity.ok(memberDto);
     }
 
-    @GetMapping("/friend/{memberId}")
-    public ResponseEntity<?> friend(@PathVariable("memberId") int memberId) {
-        List<MemberDto> friends = memberService.findFriend(memberId);
-        return ResponseEntity.ok(friends);
+    @GetMapping("/follower/{memberId}")
+    public ResponseEntity<?> follower(@PathVariable("memberId") int memberId) {
+        List<MemberDto> follower = memberService.findFollower(memberId);
+        return ResponseEntity.ok(follower);
     }
 
-    @PostMapping("/friend")
-    public ResponseEntity<?> addFriend(@RequestBody FriendDto friendDto) {
-        memberService.addFriend(friendDto);
+    @GetMapping("/following/{memberId}")
+    public ResponseEntity<?> following(@PathVariable("memberId") int memberId) {
+        List<MemberDto> followee = memberService.findFollowee(memberId);
+        return ResponseEntity.ok(followee);
+    }
+
+    @PostMapping("/follow")
+    public ResponseEntity<?> follow(@RequestBody FollowDto followDto) {
+        memberService.follow(followDto);
+        return ResponseEntity.ok().build();
+    }
+
+    @DeleteMapping("/follow")
+    public ResponseEntity<?> unfollow(@RequestBody FollowDto followDto) {
+        memberService.unfollow(followDto);
         return ResponseEntity.ok().build();
     }
 

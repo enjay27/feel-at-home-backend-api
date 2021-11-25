@@ -10,35 +10,74 @@
     </insert>
 
     <select id="findByAccountId" parameterType="string" resultType="memberDto">
-        select member_id, member_account_id, display_name, email
+        select member_id, member_account_id, display_name, email, following, followers
         from member
         where member_account_id = #{accountId}
     </select>
 
+    <select id="findByMemberId" parameterType="int" resultType="memberDto">
+        select member_id, member_account_id, display_name, email, following, followers
+        from member
+        where member_id = #{accountId}
+    </select>
+
     <select id="findByNameLike" parameterType="string" resultType="memberDto">
-        select member_id, member_account_id, display_name, email
+        select member_id, member_account_id, display_name, email, following, followers
         from member
         where display_name like CONCAT('%',#{keyword},'%')
     </select>
 
-    <select id="findFriend" parameterType="int" resultType="memberDto">
-        select member.member_id, member_account_id, display_name, email
+    <select id="findFollowee" parameterType="int" resultType="memberDto">
+        select member.member_id, member_account_id, display_name, email, following, followers
         from member
         where member.member_id in (
-            select friend_id
-            from friend
+            select follow_id
+            from follow
             where member_id = #{memberId});
     </select>
 
-    <insert id="addFriend" parameterType="map">
-        insert into friend (member_id, friend_id)
-        values (#{memberId}, #{friendId})
+    <select id="findFollower" parameterType="int" resultType="memberDto">
+        select member.member_id, member_account_id, display_name, email, following, followers
+        from member
+        where member.member_id in (
+            select member_id
+            from follow
+            where follow_id = #{followerId});
+    </select>
+
+    <insert id="follow" parameterType="map">
+        insert into follow (member_id, follow_id)
+        values (#{memberId}, #{followId})
     </insert>
 
-    <delete id="deleteFriend" parameterType="map">
-        delete from friend
+    <update id="increaseFollower" parameterType="int">
+        update member
+        set followers = followers + 1
         where member_id = #{memberId}
-        and friend_id = #{friendId}
+    </update>
+
+    <update id="increaseFollowing" parameterType="int">
+        update member
+        set following = following + 1
+        where member_id = #{memberId}
+    </update>
+
+    <update id="decreaseFollower" parameterType="int">
+        update member
+        set followers = followers - 1
+        where member_id = #{memberId}
+    </update>
+
+    <update id="decreaseFollowing" parameterType="int">
+        update member
+        set following = following - 1
+        where member_id = #{memberId}
+    </update>
+
+    <delete id="deleteFollow" parameterType="map">
+        delete from follow
+        where member_id = #{memberId}
+        and follow_id = #{followId}
     </delete>
 
 </mapper>
