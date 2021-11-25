@@ -49,7 +49,7 @@ public class DiaryController {
 	@ApiOperation(value = "member_id에 해당하는 sentimentName과 count를 반환한다.", response = List.class)
 	@GetMapping("/sent/{member_id}")
 	public ResponseEntity<List<SentimentDto>> listSentiment(@PathVariable("member_id") String member_id) {
-		logger.debug("listSentiment - 호출");
+		logger.debug("listSentiment - 호출 / "+ member_id);
 		return new ResponseEntity<List<SentimentDto>>(diaryService.listSentiment(member_id), HttpStatus.OK);
 	}
 	
