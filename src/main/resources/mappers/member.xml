@@ -21,10 +21,23 @@
         where member_id = #{accountId}
     </select>
 
-    <select id="findByNameLike" parameterType="string" resultType="memberDto">
-        select member_id, member_account_id, display_name, email, following, followers
+    <select id="findByNameLike" parameterType="searchDto" resultType="memberDto">
+        select member.member_id,
+               member_account_id,
+               display_name,
+               email,
+               following,
+               followers,
+               if(member.member_id in (select follow_id from follow
+                                       where member_id = #{memberId}), true, false) follow
         from member
-        where display_name like CONCAT('%',#{keyword},'%')
+                 left join follow on follow.member_id = member.member_id
+        where display_name like CONCAT('%', #{name}, '%')
+          and member.member_id != #{memberId};
+    </select>
+
+    <select id="followCheck" parameterType="searchDto" resultType="int">
+
     </select>
 
     <select id="findFollowee" parameterType="int" resultType="memberDto">
@@ -75,9 +88,10 @@
     </update>
 
     <delete id="deleteFollow" parameterType="map">
-        delete from follow
+        delete
+        from follow
         where member_id = #{memberId}
-        and follow_id = #{followId}
+          and follow_id = #{followId}
     </delete>
 
 </mapper>

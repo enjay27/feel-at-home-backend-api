@@ -4,6 +4,7 @@ package com.athome.feel.model.service;
 import com.athome.feel.model.FollowDto;
 import com.athome.feel.model.LoginDto;
 import com.athome.feel.model.MemberDto;
+import com.athome.feel.model.SearchDto;
 
 import java.util.List;
 
@@ -21,5 +22,5 @@ public interface MemberService {
 
     void unfollow(FollowDto followDto);
 
-    List<MemberDto> searchName(String name);
+    List<MemberDto> searchName(SearchDto searchDto);
 }
