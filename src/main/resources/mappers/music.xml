@@ -15,4 +15,15 @@
         values (#{youtube_id}, #{title}, #{description}, #{thumbnail})
     </insert>
 
+	<insert id="likeMusic" parameterType="map">
+    	insert into song_like (member_id, song_id)
+    	values (#{memberId}, #{songId})
+    </insert>
+    
+    <delete id="dislikeMusic" parameterType="map">
+    	delete from song_like
+    	where member_id = #{memberId}
+    	and song_id = #{songId}
+    </delete>
+    
 </mapper>
