@@ -24,7 +24,6 @@ public interface MemberService {
     void unfollow(FollowDto followDto);
 
     List<MemberDto> searchName(SearchDto searchDto);
-    List<MemberDto> searchName(String name);
 
     List<MusicDto> listLikeSongs(int memberId);
 }
