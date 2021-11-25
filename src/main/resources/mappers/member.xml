@@ -28,7 +28,8 @@
                email,
                following,
                followers,
-               if(member.member_id in (select follow_id from follow
+               if(member.member_id in (select follow_id
+                                       from follow
                                        where member_id = #{memberId}), true, false) follow
         from member
                  left join follow on follow.member_id = member.member_id
@@ -50,12 +51,20 @@
     </select>
 
     <select id="findFollower" parameterType="int" resultType="memberDto">
-        select member.member_id, member_account_id, display_name, email, following, followers
+        select member.member_id,
+               member_account_id,
+               display_name,
+               email,
+               following,
+               followers,
+               if(member.member_id in (select follow_id
+                                       from follow
+                                       where member_id = 1), true, false) follow
         from member
         where member.member_id in (
             select member_id
             from follow
-            where follow_id = #{followerId});
+            where follow_id = 1);
     </select>
 
     <insert id="follow" parameterType="map">
@@ -93,12 +102,12 @@
         where member_id = #{memberId}
           and follow_id = #{followId}
     </delete>
-    
+
     <select id="listLikeSongs" parameterType="int" resultType="MusicDto">
-    	select st.title, st.youtube_id
-    	from song st
-    	inner join song_like sl on st.song_id = sl.song_id
-    	where member_id = #{memberId}
+        select st.title, st.youtube_id
+        from song st
+                 inner join song_like sl on st.song_id = sl.song_id
+        where member_id = #{memberId}
     </select>
 
 </mapper>
