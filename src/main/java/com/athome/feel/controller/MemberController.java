@@ -49,7 +49,10 @@ public class MemberController {
     }
 
     @DeleteMapping("/follow")
-    public ResponseEntity<?> unfollow(@RequestBody FollowDto followDto) {
+    public ResponseEntity<?> unfollow(@RequestParam Map<String, String> map) {
+        FollowDto followDto = new FollowDto();
+        followDto.setFollowId(Integer.parseInt(map.get("followId")));
+        followDto.setMemberId(Integer.parseInt(map.get("memberId")));
         memberService.unfollow(followDto);
         return ResponseEntity.ok().build();
     }
