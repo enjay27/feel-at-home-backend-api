@@ -211,7 +211,7 @@ CREATE TABLE `song` (
   `song_id` bigint NOT NULL AUTO_INCREMENT,
   `youtube_id` varchar(30) NOT NULL,
   `title` varchar(100) NOT NULL,
-  `description` varchar(50) NOT NULL,
+  `description` varchar(500) NOT NULL,
   `thumbnail` varchar(100) NOT NULL,
   PRIMARY KEY (`song_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -230,6 +230,21 @@ UNLOCK TABLES;
 -- Dumping events for database 'feel_at_home'
 --
 
+DROP TABLE IF EXISTS `song_like`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `song_like` (
+  `song_like_id` bigint NOT NULL AUTO_INCREMENT,
+  `member_id` bigint NOT NULL,
+  `song_id` bigint NOT NULL,
+  PRIMARY KEY (`song_like_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `song_like`
+--
+
 --
 -- Dumping routines for database 'feel_at_home'
 --
@@ -243,4 +258,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-11-25  9:06:49
+-- Dump completed on 2021-11-25  9:06:49\

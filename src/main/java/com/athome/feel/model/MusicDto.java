@@ -1,12 +1,21 @@
 package com.athome.feel.model;
 
 public class MusicDto {
+	private int song_id;
     private String title;
     private String youtube_id;
     private String description;
     private String thumbnail;
 
-    public String getTitle() {
+    public int getSong_id() {
+		return song_id;
+	}
+
+	public void setSong_id(int song_id) {
+		this.song_id = song_id;
+	}
+
+	public String getTitle() {
         return title;
     }
 
