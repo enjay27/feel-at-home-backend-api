@@ -3,6 +3,7 @@ package com.athome.feel.model.service;
 import com.athome.feel.model.FollowDto;
 import com.athome.feel.model.LoginDto;
 import com.athome.feel.model.MemberDto;
+import com.athome.feel.model.MusicDto;
 import com.athome.feel.model.mapper.MemberMapper;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,4 +59,9 @@ public class MemberServiceImpl implements MemberService {
     public List<MemberDto> searchName(String name) {
         return sqlSession.getMapper(MemberMapper.class).findByNameLike(name);
     }
+
+	@Override
+	public List<MusicDto> listLikeSongs(int memberId) {
+		return sqlSession.getMapper(MemberMapper.class).listLikeSongs(memberId);
+	}
 }

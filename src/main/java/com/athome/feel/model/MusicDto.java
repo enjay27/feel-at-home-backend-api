@@ -6,8 +6,17 @@ public class MusicDto {
     private String youtube_id;
     private String description;
     private String thumbnail;
+    private boolean islike;
 
-    public int getSong_id() {
+    public boolean isIslike() {
+		return islike;
+	}
+
+	public void setIslike(boolean islike) {
+		this.islike = islike;
+	}
+
+	public int getSong_id() {
 		return song_id;
 	}
 
