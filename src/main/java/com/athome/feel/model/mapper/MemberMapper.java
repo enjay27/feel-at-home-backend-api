@@ -3,6 +3,7 @@ package com.athome.feel.model.mapper;
 import com.athome.feel.model.FollowDto;
 import com.athome.feel.model.LoginDto;
 import com.athome.feel.model.MemberDto;
+import com.athome.feel.model.SearchDto;
 import com.athome.feel.model.MusicDto;
 
 import org.apache.ibatis.annotations.Mapper;
@@ -24,7 +25,7 @@ public interface MemberMapper {
 
     int deleteFollow(FollowDto followDto);
 
-    List<MemberDto> findByNameLike(String name);
+    List<MemberDto> findByNameLike(SearchDto searchDto);
 
     void increaseFollowing(int memberId);
 

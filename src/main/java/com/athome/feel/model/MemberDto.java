@@ -6,8 +6,9 @@ public class MemberDto {
     String member_account_id;
     String display_name;
     String email;
-    int follower;
+    int followers;
     int following;
+    boolean isFollow;
 
     public String getMember_id() {
         return member_id;
@@ -41,12 +42,12 @@ public class MemberDto {
         this.email = email;
     }
 
-    public int getFollower() {
-        return follower;
+    public int getFollowers() {
+        return followers;
     }
 
-    public void setFollower(int follower) {
-        this.follower = follower;
+    public void setFollowers(int followers) {
+        this.followers = followers;
     }
 
     public int getFollowing() {
@@ -55,5 +56,13 @@ public class MemberDto {
 
     public void setFollowing(int following) {
         this.following = following;
+    }
+
+    public boolean isFollow() {
+        return isFollow;
+    }
+
+    public void setFollow(boolean follow) {
+        isFollow = follow;
     }
 }

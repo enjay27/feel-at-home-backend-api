@@ -3,6 +3,7 @@ package com.athome.feel.model.service;
 import com.athome.feel.model.FollowDto;
 import com.athome.feel.model.LoginDto;
 import com.athome.feel.model.MemberDto;
+import com.athome.feel.model.SearchDto;
 import com.athome.feel.model.MusicDto;
 import com.athome.feel.model.mapper.MemberMapper;
 import org.apache.ibatis.session.SqlSession;
@@ -56,8 +57,8 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public List<MemberDto> searchName(String name) {
-        return sqlSession.getMapper(MemberMapper.class).findByNameLike(name);
+    public List<MemberDto> searchName(SearchDto searchDto) {
+        return sqlSession.getMapper(MemberMapper.class).findByNameLike(searchDto);
     }
 
 	@Override
