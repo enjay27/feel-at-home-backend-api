@@ -4,6 +4,7 @@ import com.athome.feel.model.FollowDto;
 import com.athome.feel.model.LoginDto;
 import com.athome.feel.model.MemberDto;
 import com.athome.feel.model.SearchDto;
+import com.athome.feel.model.MusicDto;
 import com.athome.feel.model.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -63,4 +64,10 @@ public class MemberController {
         return ResponseEntity.ok(memberDtos);
     }
 
+    //GetMapping으로 Song과 Song_like join해서 나온거 리스트뿌려주기
+    @GetMapping("/likelist/{memberId}")
+    public ResponseEntity<?> listLikeSongs(@PathVariable("memberId") int memberId){
+    	List<MusicDto> likeMusic = memberService.listLikeSongs(memberId);
+    	return ResponseEntity.ok(likeMusic);
+    }
 }
