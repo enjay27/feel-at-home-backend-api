@@ -81,7 +81,7 @@
     </delete>
     
     <select id="listLikeSongs" parameterType="int" resultType="MusicDto">
-    	select st.title
+    	select st.title, st.youtube_id
     	from song st
     	inner join song_like sl on st.song_id = sl.song_id
     	where member_id = #{memberId}
