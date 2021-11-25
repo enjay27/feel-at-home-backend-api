@@ -33,17 +33,25 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public List<MemberDto> findFollower(int memberId) {
-        return null;
+        return sqlSession.getMapper(MemberMapper.class).findFollower(memberId);
     }
 
     @Override
     public void follow(FollowDto followDto) {
-        sqlSession.getMapper(MemberMapper.class).addFollow(followDto);
+        int updatedCount = sqlSession.getMapper(MemberMapper.class).follow(followDto);
+        if (updatedCount != 0) {
+            sqlSession.getMapper(MemberMapper.class).increaseFollowing(followDto.getMemberId());
+            sqlSession.getMapper(MemberMapper.class).increaseFollower(followDto.getFollowId());
+        }
     }
 
     @Override
     public void unfollow(FollowDto followDto) {
-        sqlSession.getMapper(MemberMapper.class).deleteFollow(followDto);
+        int updatedCount = sqlSession.getMapper(MemberMapper.class).deleteFollow(followDto);
+        if (updatedCount != 0) {
+            sqlSession.getMapper(MemberMapper.class).decreaseFollowing(followDto.getMemberId());
+            sqlSession.getMapper(MemberMapper.class).decreaseFollower(followDto.getFollowId());
+        }
     }
 
     @Override

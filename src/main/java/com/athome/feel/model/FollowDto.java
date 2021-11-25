@@ -2,19 +2,22 @@ package com.athome.feel.model;
 
 public class FollowDto {
 
-    private final int memberId;
-    private final int friendId;
-
-    public FollowDto(int memberId, int friendId) {
-        this.memberId = memberId;
-        this.friendId = friendId;
-    }
+    private int memberId;
+    private int followId;
 
     public int getMemberId() {
         return memberId;
     }
 
-    public int getFriendId() {
-        return friendId;
+    public void setMemberId(int memberId) {
+        this.memberId = memberId;
+    }
+
+    public int getFollowId() {
+        return followId;
+    }
+
+    public void setFollowId(int followId) {
+        this.followId = followId;
     }
 }

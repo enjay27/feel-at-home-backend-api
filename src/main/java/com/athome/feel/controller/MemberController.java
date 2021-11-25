@@ -27,15 +27,27 @@ public class MemberController {
         return ResponseEntity.ok(memberDto);
     }
 
-    @GetMapping("/follow/{memberId}")
-    public ResponseEntity<?> followee(@PathVariable("memberId") int memberId) {
-        List<MemberDto> friends = memberService.findFollowee(memberId);
-        return ResponseEntity.ok(friends);
+    @GetMapping("/follower/{memberId}")
+    public ResponseEntity<?> follower(@PathVariable("memberId") int memberId) {
+        List<MemberDto> follower = memberService.findFollower(memberId);
+        return ResponseEntity.ok(follower);
+    }
+
+    @GetMapping("/following/{memberId}")
+    public ResponseEntity<?> following(@PathVariable("memberId") int memberId) {
+        List<MemberDto> followee = memberService.findFollowee(memberId);
+        return ResponseEntity.ok(followee);
     }
 
     @PostMapping("/follow")
     public ResponseEntity<?> follow(@RequestBody FollowDto followDto) {
         memberService.follow(followDto);
+        return ResponseEntity.ok().build();
+    }
+
+    @DeleteMapping("/follow")
+    public ResponseEntity<?> unfollow(@RequestBody FollowDto followDto) {
+        memberService.unfollow(followDto);
         return ResponseEntity.ok().build();
     }
 

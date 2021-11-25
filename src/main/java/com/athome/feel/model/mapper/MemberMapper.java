@@ -18,9 +18,18 @@ public interface MemberMapper {
 
     List<MemberDto> findFollower(int memberId);
 
-    void addFollow(FollowDto followDto);
+    int follow(FollowDto followDto);
 
-    void deleteFollow(FollowDto followDto);
+    int deleteFollow(FollowDto followDto);
 
     List<MemberDto> findByNameLike(String name);
+
+    void increaseFollowing(int memberId);
+
+    void increaseFollower(int followId);
+
+    void decreaseFollowing(int memberId);
+
+    void decreaseFollower(int followId);
+
 }

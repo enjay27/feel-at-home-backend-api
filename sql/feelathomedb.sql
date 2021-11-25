@@ -108,7 +108,8 @@ CREATE TABLE `member` (
   `member_account_id` varchar(45) NOT NULL,
   `display_name` varchar(45) NOT NULL,
   `email` varchar(45) NOT NULL,
-  `follow` int DEFAULT '0',
+  `following` int DEFAULT '0',
+  `followers` int DEFAULT '0',
   PRIMARY KEY (`member_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
