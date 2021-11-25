@@ -42,7 +42,15 @@
     </select>
 
     <select id="findFollowee" parameterType="int" resultType="memberDto">
-        select member.member_id, member_account_id, display_name, email, following, followers
+        select member.member_id,
+               member_account_id,
+               display_name,
+               email,
+               following,
+               followers,
+               if(member.member_id in (select follow_id
+                                       from follow
+                                       where member_id = #{memberId}), true, false) follow
         from member
         where member.member_id in (
             select follow_id
@@ -59,12 +67,12 @@
                followers,
                if(member.member_id in (select follow_id
                                        from follow
-                                       where member_id = 1), true, false) follow
+                                       where member_id = #{memberId}), true, false) follow
         from member
         where member.member_id in (
             select member_id
             from follow
-            where follow_id = 1);
+            where follow_id = #{memberId});
     </select>
 
     <insert id="follow" parameterType="map">
