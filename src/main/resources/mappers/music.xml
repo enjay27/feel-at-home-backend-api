@@ -7,7 +7,7 @@
     <select id="findById" parameterType="string" resultType="musicDto">
         select song_id, youtube_id, title, description, thumbnail
         from song
-        where youtube_id = #{youtubeId}
+        where youtube_id = #{youtube_id}
     </select>
 
     <insert id="insertSong" parameterType="MusicDto">
@@ -15,15 +15,15 @@
         values (#{youtube_id}, #{title}, #{description}, #{thumbnail})
     </insert>
 
-	<insert id="likeMusic" parameterType="map">
+	<insert id="likeMusic" parameterType="SonglikeDto">
     	insert into song_like (member_id, song_id)
-    	values (#{memberId}, #{songId})
+    	values (#{member_id}, #{song_id})
     </insert>
     
-    <delete id="dislikeMusic" parameterType="map">
+    <delete id="dislikeMusic" parameterType="SonglikeDto">
     	delete from song_like
-    	where member_id = #{memberId}
-    	and song_id = #{songId}
+    	where member_id = #{member_id}
+    	and song_id = #{song_id}
     </delete>
     
 </mapper>
